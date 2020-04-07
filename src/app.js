@@ -20,7 +20,7 @@ app.post('/repositories', (req, res) => {
     id: uuid(),
     title,
     techs,
-    like: 0,
+    likes: 0,
     url,
   };
 
@@ -45,6 +45,7 @@ app.put('/repositories/:id', (req, res) => {
     title,
     url,
     techs,
+    likes: 0,
   };
 
   repositories[repositoryIndex] = repository;
@@ -73,7 +74,7 @@ app.post('/repositories/:id/like', (req, res) => {
   if (!repository) {
     return res.status(400).json({ error: 'Repository not found' });
   }
-  repository.like += 1;
+  repository.likes += 1;
 
   return res.status(202).json(repository);
 });
